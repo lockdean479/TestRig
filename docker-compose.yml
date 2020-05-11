@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  testrig:
+    image: ${DOCKER_REGISTRY-}testrig
+    build:
+      context: .
+      dockerfile: TestRig/Dockerfile
+
+  testrigapi:
+    image: ${DOCKER_REGISTRY-}testrigapi
+    build:
+      context: .
+      dockerfile: TestRigApi/Dockerfile
+
