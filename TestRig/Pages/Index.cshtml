@@ -7,6 +7,11 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
 </div>
-<div>
-    <textArea  class ="container-fluid">@ViewData["Message"]</textArea>
-</div>
+<form class="form-inline" method="post">
+    <div class="form-group mb-2">
+        <label for="ipAddress"> Ip Address : </label>
+        <input type="text" class="form-control" id="ipAddress" name="ipAddress" value="testrigapi"><br><br>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Get</button>
+</form>
+

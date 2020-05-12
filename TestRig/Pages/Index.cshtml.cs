@@ -20,15 +20,15 @@ namespace TestRig.Pages
         public async Task OnGet()
         {
             ViewData["Message"] = $"{DateTime.UtcNow} [{this.GetType().Name}] OnGet Called\r\n";
-
-            using (var client = new System.Net.Http.HttpClient())
-            {
-                var request = new System.Net.Http.HttpRequestMessage();
-                request.RequestUri = new Uri("http://testrigapi/Command");
-                var response = await client.SendAsync(request);
-                ViewData["Message"] += await response.Content.ReadAsStringAsync();
-            }
         }
+
+        public async Task<IActionResult> OnPostAsync(string ipAddress)
+        {
+            ViewData["Message"] = $"{DateTime.UtcNow} [{this.GetType().Name}] OnPostASync({ipAddress}) Called\r\n";
+            
+            return new RedirectToPageResult("Get", new { ipAddress = ipAddress });
+        }
+
 
 
 
