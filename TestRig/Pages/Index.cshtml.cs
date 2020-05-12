@@ -22,11 +22,11 @@ namespace TestRig.Pages
             ViewData["Message"] = $"{DateTime.UtcNow} [{this.GetType().Name}] OnGet Called\r\n";
         }
 
-        public async Task<IActionResult> OnPostAsync(string ipAddress)
+        public async Task<IActionResult> OnPostAsync(string urlAddress)
         {
-            ViewData["Message"] = $"{DateTime.UtcNow} [{this.GetType().Name}] OnPostASync({ipAddress}) Called\r\n";
+            ViewData["Message"] = $"{DateTime.UtcNow} [{this.GetType().Name}] OnPostASync({urlAddress}) Called\r\n";
             
-            return new RedirectToPageResult("Get", new { ipAddress = ipAddress });
+            return new RedirectToPageResult("Get", new { urlAddress = urlAddress });
         }
 
 

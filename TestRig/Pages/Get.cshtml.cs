@@ -17,24 +17,21 @@ namespace TestRig.Pages
             _logger = logger;
         }
 
-        public async Task OnGet(string ipAddress)
+        public async Task OnGet(string urlAddress)
         {
-            ViewData["Message"] = $"{DateTime.UtcNow} [{this.GetType().Name}] OnGet({ipAddress}) Called\r\n";
-
-            string url = ConstructUrl(ipAddress);
-
+            ViewData["Message"] = $"{DateTime.UtcNow} [{this.GetType().Name}] OnGet({urlAddress}) Called\r\n";
 
             using (var client = new System.Net.Http.HttpClient())
             {
-                var request = new System.Net.Http.HttpRequestMessage {RequestUri = new Uri(url)};
+                var request = new System.Net.Http.HttpRequestMessage {RequestUri = new Uri(urlAddress)};
                 var response = await client.SendAsync(request);
+                if (!response.IsSuccessStatusCode)
+                {
+                    ViewData["Message"] += $"Failure : Reason : {response.ReasonPhrase}, Status : {response.StatusCode}";
+                }
                 ViewData["Message"] += await response.Content.ReadAsStringAsync();
             }
         }
 
-        private string ConstructUrl(string ipAddress)
-        {
-            return $"http://{ipAddress}/Command";
-        }
     }
 }
