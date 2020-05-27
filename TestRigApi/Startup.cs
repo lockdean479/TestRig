@@ -36,8 +36,10 @@ namespace TestRigApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
+            app.UseHsts();
 
+            app.UseRouting();
+            app.UseHttpsRedirection();
             app.UseAuthorization();
 
             app.UseSwaggerUI(c =>
@@ -50,6 +52,7 @@ namespace TestRigApi
             {
                 endpoints.MapControllers();
             });
+            
         }
     }
 }
